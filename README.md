@@ -1,73 +1,145 @@
-# Matrix Doom — ASCII FPS in Pygame
+<br>
+<p align="center">
+  <pre align="center">
+  ███╗   ███╗ █████╗ ████████╗██████╗ ██╗██╗  ██╗
+  ████╗ ████║██╔══██╗╚══██╔══╝██╔══██╗██║╚██╗██╔╝
+  ██╔████╔██║███████║   ██║   ██████╔╝██║ ╚███╔╝
+  ██║╚██╔╝██║██╔══██║   ██║   ██╔══██╗██║ ██╔██╗
+  ██║ ╚═╝ ██║██║  ██║   ██║   ██║  ██║██║██╔╝ ██╗
+  ╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝
+              ██████╗  ██████╗  ██████╗ ███╗   ███╗
+              ██╔══██╗██╔═══██╗██╔═══██╗████╗ ████║
+              ██║  ██║██║   ██║██║   ██║██╔████╔██║
+              ██║  ██║██║   ██║██║   ██║██║╚██╔╝██║
+              ██████╔╝╚██████╔╝╚██████╔╝██║ ╚═╝ ██║
+              ╚═════╝  ╚═════╝  ╚═════╝ ╚═╝     ╚═╝
+  </pre>
+</p>
 
-A Matrix-themed first-person shooter rendered entirely with ASCII/Unicode characters in a pygame monospace grid. Green phosphor on black, cascading character rain, raycasting corridors, particle physics — the whole aesthetic.
+<p align="center">
+  <strong>A first-person shooter rendered entirely in ASCII.</strong><br>
+  <em>Green phosphor. Digital rain. Raycasting corridors. Particle physics.</em>
+</p>
 
-**This project was generated autonomously** by an experimental modular code-building agent as a research artifact. Every file — 32 across 10 modules — was planned, scaffolded, built, and validated without human edits.
+<p align="center">
+  <img src="https://img.shields.io/badge/python-3.12-green?style=flat-square&logo=python&logoColor=white" alt="Python 3.12">
+  <img src="https://img.shields.io/badge/pygame-2.5-green?style=flat-square&logo=python&logoColor=white" alt="Pygame">
+  <img src="https://img.shields.io/badge/files-32-green?style=flat-square" alt="32 files">
+  <img src="https://img.shields.io/badge/human%20edits-0-green?style=flat-square" alt="Zero human edits">
+  <img src="https://img.shields.io/badge/built%20by-autonomous%20agent-black?style=flat-square" alt="Built by AI">
+</p>
 
-## What's in here
+---
 
-- **Raycasting engine** — DDA-based 3D corridor rendering using Unicode block characters
-- **Particle physics** — shell casings, debris with gravity, bounce, and fade
-- **3 weapon types** with distinct particle effects
-- **Enemy AI** with pathfinding
-- **HUD** — ammo, health, minimap
-- **5+ procedurally generated levels**
-- **Matrix rain** — cascading green characters on menus and as gameplay overlay
+## What is this?
 
-## How it was built
+Matrix Doom is an ASCII-rendered FPS built in pygame — raycasting corridors drawn with Unicode block characters, particle physics for shell casings and debris, enemy AI with A* pathfinding, procedurally generated levels, and the full Matrix green-on-black aesthetic with cascading digital rain.
 
-This game is the output of a single autonomous build session testing a **modular decomposition pipeline** for an LLM-driven code generator. The pipeline:
+**Every line of code was written by an AI agent.** No human touched the source. This is a research artifact from building and testing a modular autonomous code generator.
 
-1. **Architecture** — LLM designs the project, detects it needs 20+ files, triggers modular mode
-2. **Modular manifest** — decomposes into dependency-sorted module waves (config first, then asset/utils, then weapon/player/input, etc.)
-3. **Per-module build** — each module is scaffolded and built with a scoped context window (only its own files + dependency interface stubs), keeping token usage under 40K even for large projects
-4. **Integration** — a separate phase wires modules together via `main.py`, resolves cross-module imports
-5. **Validation** — syntax, imports, naming conventions, `--test` self-check, all automated
+---
 
-The full build took **94 LLM rounds across ~17 minutes** against a local Qwen3-Coder model. No cloud API, no human in the loop.
+## Features
 
-### Why this matters
+| Feature | Details |
+|---------|---------|
+| **Raycasting Engine** | DDA-based 3D corridor rendering using Unicode block chars on a monospace grid |
+| **Particle Physics** | Shell casings, debris — gravity, bounce, fade |
+| **3 Weapon Types** | Each with distinct projectile behavior and particle effects |
+| **Enemy AI** | A* pathfinding, state-based behavior |
+| **Procedural Levels** | 5+ levels generated from room layouts with corridors |
+| **Digital Rain** | Cascading Matrix character rain on menus and as gameplay overlay |
+| **HUD** | Ammo, health, minimap — all in ASCII |
 
-Flat single-agent builds hit a wall around 15 files — the code map saturates the context window and the LLM loses coherence. The modular pipeline solves this by giving each module its own scoped build cycle (~10 files, ~20K tokens), then composing them. This test validated that the approach works end-to-end: plan, scope, build, integrate, validate.
+---
 
-## Run it
+## Quick Start
 
 ```bash
 pip install pygame
 python3 main.py
 ```
 
-Self-test (headless-safe):
+Run the self-test suite (headless-safe):
+
 ```bash
 python3 main.py --test
 ```
 
-## Project structure
+---
+
+## Project Structure
 
 ```
-config/          — settings, constants
-asset/           — font loading, glyph cache
-utils/           — math helpers, file I/O
-weapon/          — weapon types, projectiles, particle effects
-player/          — stats, controller, movement
-input/           — key bindings, input handler
-levelgen/        — procedural map generation
-particle/        — particle physics engine
-world/           — grid, collision detection
-enemy/           — AI, pathfinding
-renderer/        — ASCII raycasting, Matrix rain overlay
-menu/            — menu state machine, manager
-main.py          — game loop, CLI entry point
+matrix-doom/
+├── main.py              # Game loop, CLI entry point
+├── config/              # Settings, constants
+├── asset/               # Font loading, glyph cache
+├── renderer/            # ASCII raycasting, Matrix rain overlay
+│   ├── ascii.py         # DDA raycaster, wall/floor rendering
+│   └── rain.py          # Digital rain effect
+├── weapon/              # Weapon registry, projectiles, particle FX
+├── particle/            # Particle physics engine
+├── player/              # Stats, first-person controller
+├── enemy/               # AI manager, A* pathfinding
+├── levelgen/            # Procedural map generation
+├── world/               # Grid, collision detection
+├── input/               # Key bindings, input handler
+├── menu/                # Menu state machine
+└── utils/               # Math helpers, file I/O
 ```
 
-## Build metadata
+---
+
+## How It Was Built
+
+This game is the first successful output of a **modular autonomous build pipeline** — an LLM agent that decomposes large projects into dependency-sorted module waves and builds each one with a scoped context window.
+
+### The problem
+
+Single-agent code generators hit a wall around 15 files. The code map saturates the context window, the model loses coherence, and builds fail or produce broken spaghetti.
+
+### The solution
+
+Decompose the project into modules. Build each module in isolation with only its own files + dependency interface stubs in context. Then wire them together in an integration phase.
+
+### The pipeline
+
+```
+PLAN ──> DEPS ──> MODULE WAVES ──> INTEGRATE ──> VALIDATE
+                       │
+            ┌──────────┼──────────┐
+            ▼          ▼          ▼
+         config    asset/utils   weapon/player/input ...
+        (wave 1)   (wave 2)        (wave 3)
+```
+
+Each module gets ~20K tokens of context (vs 65K blown on a flat build). Modules in the same wave can run in parallel since they don't depend on each other.
+
+### Build stats
 
 | Metric | Value |
 |--------|-------|
-| Total files | 32 |
-| Modules | 10 |
-| LLM rounds | 94 |
-| Build time | ~17 min |
-| Model | Qwen3-Coder (local, 4-bit quantized) |
-| Validation | All 6 checks passed (naming, imports, syntax, lint, run, tests) |
-| Human edits | 0 |
+| **Total files** | 32 |
+| **Modules** | 10 |
+| **LLM rounds** | 94 |
+| **Build time** | ~17 minutes |
+| **Model** | Qwen3-Coder (local, 4-bit quantized) |
+| **Validation** | 6/6 checks passed |
+| **Human edits** | 0 |
+
+The model ran locally on an RTX 4090. No cloud APIs were used.
+
+---
+
+## Why release this?
+
+This is a proof-of-concept for **autonomous modular code generation**. The game itself is fun to look at, but the real result is that the pipeline works: an LLM can plan a 30+ file project, decompose it into modules, build each one in a scoped context, and integrate them into a working application — all without human intervention.
+
+We're building toward agents that can construct real software, not just snippets. This is one step on that road.
+
+---
+
+<p align="center">
+  <sub>Built autonomously by an experimental code agent. Research artifact — not production software.</sub>
+</p>
