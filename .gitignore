@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.cadillac/
+architecture.md
+plan.json
+progress.md
